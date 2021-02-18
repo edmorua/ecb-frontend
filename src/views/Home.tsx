@@ -57,7 +57,7 @@ const Home = () => {
 
   const handleClickCar = (evt: React.MouseEvent<HTMLDivElement, MouseEvent>, cardId: number) => {
     evt.preventDefault()
-    const target = document.getElementById(cardId.toString())
+    const target = document.getElementById(cardId?.toString())
     if(target) {
       target.style.backgroundColor = "DarkTurquoise"
     }
@@ -69,8 +69,8 @@ const Home = () => {
       <div
         className={styles.CarContainer}
         onClick={(e) => { handleClickCar(e, car.id) }}
-        id={car.id.toString()}
-        key={car.id}
+        id={car.id?.toString() || car.model}
+        key={car.id || 0}
       >
         <Car
         description={car.description}
@@ -79,7 +79,7 @@ const Home = () => {
         imageURL={car.image}
         estimateDate={car.estimatedate}
         model={car.model}
-        key={car.id}
+        key={car.id || 0}
         />
       </div>
     )

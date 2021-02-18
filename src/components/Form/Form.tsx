@@ -54,9 +54,10 @@ const Form = (props: FormProps) => {
       setSuccess(true)
       setSuccessMessage(`El usuario ${userData.user} se ha guardado exitosamente. con fecha estimada ${userData.estimateDate.split('T')[0]} para el carro con id: ${userData.carId}`)
     } catch (error) {
-      console.log(error.message)
+      console.log(error.response)
+      const errorMessage = error.response?.data?.message || error.message
       setFail(true)
-      setFailMessage(error.message)
+      setFailMessage(errorMessage)
     } finally {
       setLoading(false)
     }
