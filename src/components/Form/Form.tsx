@@ -13,6 +13,10 @@ const Form = (props: FormProps) => {
   const [dateError, setDateError] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [fail, setFail] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [failMessage, setFailMessage] = useState('')
   let spanUserError
   let spanDateError
   if (userError) {
@@ -45,8 +49,14 @@ const Form = (props: FormProps) => {
       setLoading(true)
       const response = await carsApi.post('/user', body)
       console.log(response)
+      const { data } = response
+      const userData = data.user
+      setSuccess(true)
+      setSuccessMessage(`El usuario ${userData.user} se ha guardado exitosamente. con fecha estimada ${userData.estimateDate.split('T')[0]} para el carro con id: ${userData.carId}`)
     } catch (error) {
       console.log(error.message)
+      setFail(true)
+      setFailMessage(error.message)
     } finally {
       setLoading(false)
     }
@@ -67,6 +77,20 @@ const Form = (props: FormProps) => {
     return ( <div className={styles.loader}></div>)
   }
 
+  if (success) {
+    return ( 
+      <div>
+        <p>{successMessage}</p>
+      </div>
+    )
+  }
+  if (fail) {
+    return (
+      <div>
+        <p>{failMessage}</p>
+      </div>
+    )
+  }
   return (
     <form onSubmit={handleSubmit} className={styles.FormContainer}>
       <div className={styles.FormGroup}>

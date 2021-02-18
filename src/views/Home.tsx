@@ -70,6 +70,7 @@ const Home = () => {
         className={styles.CarContainer}
         onClick={(e) => { handleClickCar(e, car.id) }}
         id={car.id.toString()}
+        key={car.id}
       >
         <Car
         description={car.description}
