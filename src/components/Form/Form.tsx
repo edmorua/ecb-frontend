@@ -87,7 +87,7 @@ const Form = (props: FormProps) => {
   if (fail) {
     return (
       <div>
-        <p>{failMessage}</p>
+        <p style={{color: 'red'}}>{failMessage}</p>
       </div>
     )
   }
