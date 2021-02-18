@@ -1,0 +1,26 @@
+.ImageContainer{
+  width: 100%;
+}
+
+.ImageContainer > img {
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+}
+
+.CarContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.CarContainer p {
+  margin: 0;
+
+}
+
+.SpanLabel{
+  font-weight: bold;
+  font-size: 1em;
+}
